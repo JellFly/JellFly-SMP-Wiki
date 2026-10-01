@@ -683,6 +683,7 @@ button, a {
 .wiki-page .content-wrap {
   position: relative;
   width: min(1100px, 88vw);
+  margin-inline: auto;
 }
 
 .wiki-page .content-wrap h1 {
@@ -705,9 +706,9 @@ button, a {
 }
 
 .wiki-home-page .wiki-grid {
-  width: 100%;
+  width: min(1100px, 88vw);
   min-height: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 18px 0 40px;
   border: 0;
   border-radius: 0;
@@ -1218,6 +1219,10 @@ body {
   color: var(--text);
   background: #fff;
   font-family: Lato, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body::before,
@@ -1854,8 +1859,8 @@ body::after {
 .home-hero {
   position: relative;
   display: grid;
-  min-height: 470px;
-  padding: 120px 6vw 64px;
+  min-height: 100svh;
+  padding: 150px 6vw 90px;
   align-items: center;
   overflow: hidden;
   color: #f7faf6;
@@ -1897,9 +1902,10 @@ body::after {
   max-width: 780px;
   margin: 0;
   color: #fff;
-  font-size: clamp(54px, 8vw, 88px);
+  font-size: clamp(64px, 10vw, 118px);
   font-weight: 700;
   line-height: 0.98;
+  white-space: nowrap;
   text-align: left;
   text-shadow: 0 3px 24px rgba(9, 26, 15, 0.3);
 }
@@ -1915,15 +1921,16 @@ body::after {
 .home-hero-link,
 .community-link {
   display: inline-flex;
-  min-height: 46px;
-  margin-top: 26px;
-  padding: 12px 16px;
+  min-height: 62px;
+  margin-top: 32px;
+  padding: 16px 28px;
   align-items: center;
   gap: 12px;
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 4px;
   color: #fff;
   font-weight: 700;
+  font-size: 22px;
   text-decoration: none;
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
@@ -1938,6 +1945,7 @@ body::after {
   width: min(1080px, calc(100% - 40px));
   margin: 0 auto;
   padding: 58px 0 70px;
+  scroll-margin-top: 18px;
 }
 
 .home-intro {
@@ -2401,17 +2409,23 @@ body::after {
 
 @media (max-width: 720px) {
   .home-hero {
-    min-height: 400px;
-    padding: 118px 24px 54px;
+    min-height: 100svh;
+    padding: 120px 24px 70px;
     background-position: 58% center;
   }
 
   .home-hero h1 {
-    font-size: 58px;
+    font-size: clamp(58px, 14vw, 82px);
   }
 
   .home-hero-copy {
     font-size: 18px;
+  }
+
+  .home-hero-link {
+    min-height: 66px;
+    padding-inline: 30px;
+    font-size: 20px;
   }
 
   .home-main {
@@ -2445,6 +2459,10 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .motion-ready [data-reveal] {
     opacity: 1;
     transform: none;
@@ -2493,6 +2511,15 @@ body::after {
 
 .content-page:not(.home-page) .toc {
   padding: 20px 22px;
+}
+
+.content-page:not(.home-page) .toc ul {
+  display: grid;
+  gap: 5px;
+}
+
+.content-page:not(.home-page) .toc li {
+  padding: 3px 0;
 }
 
 .content-page:not(.home-page) .toc > p,
@@ -2613,6 +2640,17 @@ body::after {
   color: #28552d;
 }
 
+.content-page:not(.home-page) .rules-page > p,
+.content-page:not(.home-page) .rules-page > ul {
+  max-width: 900px;
+}
+
+.content-page:not(.home-page) .rules-page > ul {
+  padding: 14px 20px 14px 42px;
+  border-left: 3px solid #d6aa4b;
+  background: #fffdf7;
+}
+
 .content-page:not(.home-page) .patch-page > h3 {
   margin: 32px 0 12px;
   padding-bottom: 10px;
@@ -2631,6 +2669,18 @@ body::after {
   margin-bottom: 0;
 }
 
+.content-page:not(.home-page) .patch-page > ul {
+  margin: 12px 0 24px;
+  padding: 14px 20px 14px 42px;
+  border-left: 3px solid #477b46;
+  background: #f7faf5;
+}
+
+.content-page:not(.home-page) .patch-page > ul ul {
+  margin-top: 8px;
+  padding-left: 24px;
+}
+
 .content-page:not(.home-page) .wiki-card {
   border-top: 3px solid #477b46;
   color: #28552d;
@@ -2642,6 +2692,66 @@ body::after {
   border-top-color: #d6aa4b;
   background: #f7faf5;
   box-shadow: 0 12px 26px rgba(37, 53, 35, 0.1);
+}
+
+.wiki-metiers-index .wiki-grid .link-grid {
+  align-items: stretch;
+}
+
+.wiki-metiers-index .wiki-grid .wiki-card {
+  display: flex;
+  min-height: 148px;
+  padding: 22px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+.wiki-metiers-index .wiki-grid .wiki-card span {
+  max-width: none;
+  color: #28552d;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.wiki-metiers-index .wiki-grid .wiki-card small {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.wiki-home-page .wiki-grid .link-grid {
+  align-items: stretch;
+}
+
+.wiki-home-page .wiki-grid .wiki-card {
+  display: flex;
+  min-height: 148px;
+  padding: 22px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+.wiki-home-page .wiki-grid .wiki-card span {
+  max-width: none;
+  color: #28552d;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.wiki-home-page .wiki-grid .wiki-card small {
+  display: block;
+  color: #5f6368;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .wiki-commands-page .content-page .article-section > .simple-list {
@@ -2720,4 +2830,109 @@ body::after {
   .content-page:not(.home-page) .patch-page {
     animation: none;
   }
+}
+
+/* Restore the original CSS logo and non-image background treatment. */
+.brand-mark,
+.wiki-page .brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #9fe5a4, #2a5f35);
+  display: grid;
+  place-items: center;
+  color: #0a1c13;
+  font-size: 1.15rem;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 16px rgba(126, 201, 122, 0.25);
+}
+
+.home-hero {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(214, 170, 75, 0.2), transparent 22rem),
+    linear-gradient(135deg, #dcebd0 0%, #f5f1e7 52%, #e4eee4 100%);
+  color: #1b2a20;
+}
+
+.home-hero::before,
+.hero::before,
+.content-page::before,
+.wiki-page .content-page::before {
+  display: none;
+}
+
+.home-hero::after {
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.28));
+}
+
+.home-hero .home-eyebrow {
+  color: #427548;
+}
+
+.home-hero h1 {
+  color: #1b2a20;
+  text-shadow: none;
+}
+
+.home-hero-copy {
+  color: #687365;
+}
+
+.home-hero-link {
+  border-color: #315b35;
+  color: #fff;
+  background: #477b46;
+}
+
+.home-hero-link:hover {
+  color: #28552d;
+  background: #fff;
+}
+
+/* Season 2 artwork supplied for the site */
+.brand-mark,
+.wiki-page .brand-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background: url("assets/css/saison2.png") center / contain no-repeat;
+  box-shadow: none;
+  color: transparent;
+  font-size: 0;
+}
+
+.home-hero {
+  background:
+    linear-gradient(90deg, rgba(18, 40, 27, 0.64), rgba(25, 56, 37, 0.22) 58%, rgba(28, 57, 37, 0.08)),
+    url("assets/css/2026-03-28_13.36.26.png") center 48% / cover no-repeat;
+  color: #fff;
+}
+
+.home-hero .home-eyebrow,
+.home-hero h1,
+.home-hero-copy {
+  color: #fff;
+}
+
+.home-hero h1 {
+  text-shadow: 0 3px 24px rgba(9, 26, 15, 0.3);
+}
+
+/* Keep the header and navigation identical on every page. */
+.topbar,
+.wiki-page .topbar {
+  background: rgba(255, 255, 255, 0.84);
+  border-bottom: 1px solid rgba(32, 33, 36, 0.08);
+  box-shadow: 0 4px 18px rgba(20, 39, 25, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.brand-text {
+  font-family: Lato, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.main-nav a,
+.nav-drop {
+  font-family: Lato, Arial, sans-serif;
 }

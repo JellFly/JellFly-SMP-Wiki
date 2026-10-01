@@ -114,3 +114,17 @@ document.querySelectorAll(".copy-address").forEach((button) => {
     }, 1800);
   });
 });
+
+document.querySelectorAll('a[href="#rejoindre"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector("#rejoindre");
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+    history.pushState(null, "", "#rejoindre");
+  });
+});

@@ -1,6 +1,7 @@
 const jobs = {
   mineur: {
     title: "Mineur",
+    intro: "Exploitez les minerais, cuisez vos ressources et développez votre métier grâce à l'exploration du monde.",
     sections: [
       {
         title: "Niveau",
@@ -34,6 +35,7 @@ const jobs = {
   },
   bucheron: {
     title: "Bucheron",
+    intro: "Coupez les différents types de bois pour gagner de l'expérience et débloquer de nouvelles récompenses.",
     sections: [
       {
         title: "Niveau",
@@ -129,6 +131,7 @@ const jobs = {
   },
   sorcier: {
     title: "Sorcier",
+    intro: "Préparez des potions et enchantez vos équipements pour progresser dans les niveaux du métier.",
     sections: [
       {
         title: "Niveau",
