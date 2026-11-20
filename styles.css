@@ -4555,6 +4555,11 @@ html[data-theme="dark"] kbd {
   color: var(--dark-text) !important;
 }
 
+html[data-theme="dark"] .crisp-client textarea {
+  background: transparent !important;
+  color: #1c293b !important;
+}
+
 html[data-theme="dark"] h1,
 html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,

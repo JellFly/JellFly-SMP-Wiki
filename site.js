@@ -273,6 +273,7 @@ function loadCrisp() {
 
   window.$crisp = window.$crisp || [];
   window.CRISP_WEBSITE_ID = "fcfddadb-38b9-481a-957c-81511383e478";
+  window.$crisp.push(["config", "color:mode", ["light"]]);
 
   const script = document.createElement("script");
   script.src = "https://client.crisp.chat/l.js";
