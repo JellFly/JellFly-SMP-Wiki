@@ -3,10 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JellFlySMP - Wiki - Commandes</title>
+    <title>Commandes Minecraft | Wiki JellFly SMP</title>
+    <meta name="description" content="Retrouvez les commandes utiles de JellFly SMP pour vous téléporter, gérer vos homes, échanger et progresser." />
+    <link rel="canonical" href="https://wiki.jellfly.win/wiki-commandes.html" />
+    <link rel="icon" type="image/png" href="assets/css/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JellFly SMP" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="Commandes Minecraft | Wiki JellFly SMP" />
+    <meta property="og:description" content="Retrouvez les commandes utiles de JellFly SMP pour vous téléporter, gérer vos homes, échanger et progresser." />
+    <meta property="og:url" content="https://wiki.jellfly.win/wiki-commandes.html" />
+    <meta property="og:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Commandes Minecraft | Wiki JellFly SMP" />
+    <meta name="twitter:description" content="Retrouvez les commandes utiles de JellFly SMP pour vous téléporter, gérer vos homes, échanger et progresser." />
+    <meta name="twitter:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta name="twitter:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" />
     <link rel="stylesheet" href="styles.css" />
     <script src="site.js" defer></script>
-    <script src="wiki-metier.js" defer></script>
     <script src="wiki-search.js" defer></script>
   </head>
   <body class="article-page wiki-page wiki-commands-page">
@@ -26,13 +46,12 @@
             <div class="nav-dropdown" id="wiki-submenu">
               <a href="wiki-metiers.html">Métiers</a>
               <a href="wiki-commandes.html">Commandes</a>
-              <a href="wiki-factions.html">Factions</a>
             </div>
           </div>
           <a href="reglement.html">Règlement</a>
           <a href="patch-notes.html">Patch Notes</a>
         </nav>
-        <button class="search-button" aria-label="Open search bar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="5.5"></circle><path d="M16 16L21 21"></path></svg></button>
+        <button class="search-button" type="button" aria-label="Ouvrir la recherche" aria-haspopup="dialog" aria-controls="site-search-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="5.5"></circle><path d="M16 16L21 21"></path></svg></button>
       </header>
 
       <main class="content-page">
@@ -40,16 +59,16 @@
           <h1>Commandes</h1>
           <ul class="simple-list" id="commandes-generales">
             <li id="command-rules">/rules <strong>Consulter les règles du serveur</strong></li>
-            <li id="command-spawn">/spawn <strong>Se téléporter au spawn (une fois par 5 min)</strong></li>
-            <li id="command-rtp">/rtp <strong>Se téléporter aléatoirement dans l'overworld à au moins 10 000 blocs (Une fois par 15 min)</strong></li>
-            <li id="command-jobstats">/jobstats <strong>Afficher les stats des métiers</strong></li>
+            <li id="command-spawn">/spawn <strong>Se téléporter au spawn (une fois toutes les 5 min)</strong></li>
+            <li id="command-rtp">/rtp <strong>Se téléporter aléatoirement dans l’Overworld, à au moins 10 000 blocs (une fois toutes les 15 min)</strong></li>
+            <li id="command-jobstats">/jobstats <strong>Afficher les statistiques des métiers</strong></li>
           </ul>
 
           <section id="tpa">
             <h2>TPA</h2>
             <ul class="simple-list">
               <li id="command-tpa">/tpa {joueur} <strong>Envoyer une demande de téléportation à un joueur</strong></li>
-              <li id="command-tpahere">/tpahere {joueur} <strong>Envoyer une demande de téléportation à vous à un joueur</strong></li>
+              <li id="command-tpahere">/tpahere {joueur} <strong>Envoyer à un joueur une demande pour qu’il se téléporte à vous</strong></li>
             </ul>
           </section>
 
@@ -63,11 +82,11 @@
           </section>
 
           <section id="shop">
-            <h2>Shop (Admin Shop)</h2>
+            <h2>Boutiques (Admin Shop)</h2>
             <ul class="simple-list">
-              <li id="command-shop">/shop <strong>Ouvrir le / les shop(s)</strong></li>
-              <li id="command-shop-specific">/shop &lt;shop&gt; <strong>Ouvrir un shop specifique</strong></li>
-              <li id="command-shop-category">/shop &lt;shop&gt; &lt;category&gt; <strong>Ouvrir une catégorie dans un shop spécifique</strong></li>
+              <li id="command-shop">/shop <strong>Ouvrir le menu des boutiques</strong></li>
+              <li id="command-shop-specific">/shop &lt;shop&gt; <strong>Ouvrir une boutique spécifique</strong></li>
+              <li id="command-shop-category">/shop &lt;shop&gt; &lt;category&gt; <strong>Ouvrir une catégorie d’une boutique</strong></li>
             </ul>
           </section>
 
@@ -80,10 +99,10 @@
           </section>
 
           <section id="trade">
-            <h2>Trade (Échanges)</h2>
+            <h2>Échanges</h2>
             <ul class="simple-list">
-              <li id="command-trade">/trade &lt;player&gt; <strong>Envoyer une demande d'échange à qqun (Doit être dans un rayon de 10 blocs)</strong></li>
-              <li id="command-trade-accept">/trade accept &lt;player&gt; <strong>Accepter la demande d'échange de qqun</strong></li>
+              <li id="command-trade">/trade &lt;player&gt; <strong>Envoyer une demande d’échange à un joueur (dans un rayon de 10 blocs)</strong></li>
+              <li id="command-trade-accept">/trade accept &lt;player&gt; <strong>Accepter la demande d’échange d’un joueur</strong></li>
             </ul>
           </section>
 
@@ -91,7 +110,7 @@
             <h2>Home</h2>
             <ul class="simple-list">
               <li id="command-home">/home <strong>Ouvre le menu de sélection des homes</strong></li>
-              <li id="command-home-teleport">/home &lt;home&gt; <strong>Téléportation a un home spécifique</strong></li>
+              <li id="command-home-teleport">/home &lt;home&gt; <strong>Se téléporter vers un home spécifique</strong></li>
               <li id="command-sethome">/sethome &lt;home&gt; <strong>Crée un home</strong></li>
               <li id="command-delhome">/delhome &lt;home&gt; <strong>Supprime un home</strong></li>
               <li id="command-buyhome">/buyhome <strong>Acheter une home supplémentaire</strong></li>
@@ -99,10 +118,10 @@
           </section>
 
           <section id="playtime">
-            <h2>Playtime (temp de jeu)</h2>
+            <h2>Temps de jeu</h2>
             <ul class="simple-list">
-              <li id="command-playtime">/playtime <strong>Voir toute les informations concernant son temps de jeu</strong></li>
-              <li id="command-playtime-top">/playtime top <strong>Voir le top des gens les plus acitfs</strong></li>
+              <li id="command-playtime">/playtime <strong>Consulter les informations sur son temps de jeu</strong></li>
+              <li id="command-playtime-top">/playtime top <strong>Afficher le classement des joueurs les plus actifs</strong></li>
             </ul>
           </section>
         </div>

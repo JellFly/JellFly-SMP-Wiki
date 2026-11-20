@@ -3,10 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JellFly SMP</title>
+    <title>JellFly SMP | Serveur Minecraft survie</title>
+    <meta name="description" content="Rejoignez JellFly SMP, un serveur Minecraft communautaire en survie. Découvrez les métiers, commandes, récompenses de vote et les informations pour jouer." />
+    <link rel="canonical" href="https://wiki.jellfly.win/" />
+    <link rel="icon" type="image/png" href="assets/css/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JellFly SMP" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="JellFly SMP | Serveur Minecraft survie" />
+    <meta property="og:description" content="Rejoignez JellFly SMP, un serveur Minecraft communautaire en survie. Découvrez les métiers, commandes, récompenses de vote et les informations pour jouer." />
+    <meta property="og:url" content="https://wiki.jellfly.win/" />
+    <meta property="og:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JellFly SMP | Serveur Minecraft survie" />
+    <meta name="twitter:description" content="Rejoignez JellFly SMP, un serveur Minecraft communautaire en survie. Découvrez les métiers, commandes, récompenses de vote et les informations pour jouer." />
+    <meta name="twitter:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta name="twitter:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" />
     <link rel="stylesheet" href="styles.css" />
     <script src="site.js" defer></script>
-    <script src="wiki-metier.js" defer></script>
+    <script src="server-status.js" defer></script>
     <script src="wiki-search.js" defer></script>
   </head>
   <body class="home-site">
@@ -29,14 +50,13 @@
             <div class="nav-dropdown" id="wiki-submenu">
               <a href="wiki-metiers.html">Métiers</a>
               <a href="wiki-commandes.html">Commandes</a>
-              <a href="wiki-factions.html">Factions</a>
             </div>
           </div>
           <a href="reglement.html">Règlement</a>
           <a href="patch-notes.html">Patch Notes</a>
         </nav>
 
-        <button class="search-button" aria-label="Open search bar">
+        <button class="search-button" type="button" aria-label="Ouvrir la recherche" aria-haspopup="dialog" aria-controls="site-search-panel" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="11" cy="11" r="5.5"></circle>
             <path d="M16 16L21 21"></path>
@@ -50,7 +70,25 @@
             <p class="home-eyebrow">Serveur Minecraft communautaire</p>
             <h1 id="home-title">JellFly SMP</h1>
             <p class="home-hero-copy">Votre prochaine aventure commence ici.</p>
-            <a class="home-hero-link" href="#rejoindre">Jouer <span aria-hidden="true">↓</span></a>
+            <div class="home-hero-actions">
+              <a class="home-hero-link" href="#rejoindre">Jouer <span aria-hidden="true">↓</span></a>
+              <button class="home-share-button" type="button">Partager</button>
+            </div>
+            <p class="share-feedback" role="status" aria-live="polite"></p>
+            <section class="server-status" aria-label="Statut du serveur" aria-live="polite" aria-busy="true">
+              <p class="server-status-title">Statut en direct</p>
+              <div class="server-status-grid">
+                <div class="server-status-item" data-server-status>
+                  <span class="server-status-indicator" aria-hidden="true"></span>
+                  <div>
+                    <strong>Serveur JellFly</strong>
+                    <span data-status-message>Vérification…</span>
+                  </div>
+                  <span class="server-status-players" data-player-count></span>
+                </div>
+              </div>
+              <small>Serveur en 1.21.11 · Clients compatibles de 1.17 à 26.3 · État fourni par <a href="https://mcsrvstat.us/" target="_blank" rel="noreferrer">mcsrvstat.us</a>.</small>
+            </section>
           </div>
         </section>
 
@@ -58,7 +96,7 @@
           <section class="home-intro" data-reveal>
             <p class="home-eyebrow">Choisissez votre édition</p>
             <h2>Rejoignez le serveur</h2>
-            <p>Le serveur est accessible depuis Minecraft Java ou Bedrock. Suivez les étapes correspondant à votre édition.</p>
+            <p>Choisissez votre édition, copiez les informations de connexion et suivez les étapes essentielles.</p>
           </section>
 
           <div class="join-grid">
@@ -67,7 +105,8 @@
                 <span class="edition-tag">Java Edition</span>
                 <span class="edition-status">Disponible</span>
               </div>
-              <h3>Connectez-vous en quelques étapes</h3>
+              <h3>Édition Java</h3>
+              <p class="server-version">Version du serveur : <strong>1.21.11</strong> · Clients compatibles : 1.17 à 26.3</p>
               <div class="server-address">
                 <div>
                   <span class="address-label">Adresse du serveur</span>
@@ -79,14 +118,12 @@
               <ol class="join-steps">
                 <li>Lancez Minecraft et ouvrez le menu Multijoueur.</li>
                 <li>Ajoutez un serveur avec le nom « JellFly SMP » et l’adresse indiquée ci-dessus.</li>
-                <li>Lors de votre première connexion, enregistrez un mot de passe de 5 chiffres minimum lors de l'apparition du formulaire de connexion.</li>
-                <li>Retenez ce mot de passe : il vous sera demandé lors de vos prochaines connexions.</li>
-                <li>
-                  <span>Si vous possédez un compte Premium (Vous avez achetez Minecraft), utilisez la commande:</span>
-                  <code class="register-command">/premium</code>
-                </li>
-                <li>Vous n'aurez ensuite qu'à vous reconnecter avec votre code, vous pourez ensuite jouer sans vous connecter à chaque fois.</li>
+                <li>À la première connexion, choisissez un mot de passe d’au moins 5 chiffres. Vous en aurez besoin lors de vos prochaines connexions.</li>
               </ol>
+              <details class="join-extra-details">
+                <summary>Vous avez acheté Minecraft (compte Premium) ?</summary>
+                <p>Utilisez la commande <code>/premium</code> pour vous reconnecter ensuite sans saisir votre mot de passe à chaque fois.</p>
+              </details>
             </article>
 
             <article class="join-card join-card-bedrock" id="bedrock" data-reveal style="--reveal-delay: 140ms">
@@ -95,30 +132,34 @@
                 <span class="edition-status">Disponible</span>
               </div>
               <h3>Édition Bedrock</h3>
+              <p class="server-version">Version du serveur : <strong>1.21.11</strong> · Clients compatibles : 1.17 à 26.3</p>
               <p>Ajoutez JellFly SMP dans la liste des serveurs Bedrock avec les informations suivantes :</p>
               <div class="bedrock-endpoint">
                 <div class="endpoint-item">
-                  <span class="address-label">Adresse du serveur</span>
-                  <code>smp.jellfly.win</code>
+                  <div>
+                    <span class="address-label">Adresse du serveur</span>
+                    <code>smp.jellfly.win</code>
+                  </div>
+                  <button class="copy-address" type="button" data-copy="smp.jellfly.win" data-copy-type="address">Copier l’adresse</button>
                 </div>
                 <div class="endpoint-item">
-                  <span class="address-label">Port</span>
-                  <code>7826</code>
+                  <div>
+                    <span class="address-label">Port</span>
+                    <code>7826</code>
+                  </div>
+                  <button class="copy-address" type="button" data-copy="7826" data-copy-type="port">Copier le port</button>
                 </div>
               </div>
+              <p class="copy-feedback" role="status" aria-live="polite"></p>
+              <a class="text-link join-help-link" href="https://discord.gg/PV7KxdRzTr" target="_blank" rel="noreferrer">Besoin d’aide ? Rejoindre le Discord <span aria-hidden="true">↗</span></a>
               <div class="bedrock-guides">
                 <section class="bedrock-guide" data-reveal style="--reveal-delay: 180ms">
                   <h4>PC Windows</h4>
-                  <ol>
-                    <li>Lancez Minecraft pour Windows (Bedrock) et ouvrez <strong>Jouer</strong>.</li>
-                    <li>Ouvrez l’onglet <strong>Serveurs</strong>, puis choisissez <strong>Ajouter un serveur</strong>.</li>
-                    <li>Saisissez « JellFly SMP », l’adresse <code>smp.jellfly.win</code> et le port <code>7826</code>, puis enregistrez.</li>
-                    <li>Sélectionnez le serveur dans votre liste pour vous connecter.</li>
-                  </ol>
+                  <p>Dans Minecraft, ouvrez <strong>Jouer → Serveurs → Ajouter un serveur</strong>, puis saisissez l’adresse et le port affichés ci-dessus.</p>
                 </section>
 
-                <section class="bedrock-guide bedrock-console-guide" data-reveal style="--reveal-delay: 220ms">
-                  <h4>Nintendo Switch, PlayStation et Xbox</h4>
+                <details class="bedrock-guide bedrock-console-guide" data-reveal style="--reveal-delay: 220ms">
+                  <summary>Connexion sur console (Switch, PlayStation et Xbox)</summary>
                   <p>Les consoles ne permettent pas d’ajouter directement une IP de serveur dans Minecraft. BedrockConnect utilise un DNS tiers pour ouvrir un menu de serveurs personnalisés depuis la liste des serveurs en vedette.</p>
 
                   <details class="console-method">
@@ -157,54 +198,101 @@
                   </div>
 
                   <p class="console-note">Cette méthode DNS est un service tiers, pas une fonction officielle de Minecraft. Si elle perturbe la connexion, remettez les DNS en Automatique. Les services publics peuvent changer d’adresse ou être indisponibles ; consultez le <a href="https://github.com/Pugmatt/BedrockConnect" target="_blank" rel="noreferrer">guide BedrockConnect</a> et son <a href="https://bcstatus.xyz/status/bedrock" target="_blank" rel="noreferrer">état des services</a>. La méthode publique « Ajouter un ami » est actuellement désactivée par le projet.</p>
-                </section>
+                </details>
               </div>
-              <a class="text-link" href="https://discord.gg/PV7KxdRzTr" target="_blank" rel="noreferrer">Besoin d’aide ? Rejoindre le Discord <span aria-hidden="true">↗</span></a>
             </article>
           </div>
 
           <section class="voice-chat-section" id="voice-chat" data-reveal aria-labelledby="voice-chat-title">
-            <div class="section-heading">
-              <p class="home-eyebrow">Jouez aussi à la voix</p>
-              <h2 id="voice-chat-title">Rejoindre le chat vocal</h2>
-              <p>Le serveur utilise le mod Simple Voice Chat. Le chat vocal est disponible sur Minecraft Java avec le mod installé côté client.</p>
-            </div>
-            <div class="voice-chat-card">
-              <ol class="join-steps">
-                <li>Installez Simple Voice Chat pour votre version de Minecraft et votre chargeur de mods (Fabric, Forge ou NeoForge, selon votre installation). Le serveur ne vous demande pas d’installer le mod pour Bedrock.</li>
-                <li>Lancez le jeu avec le bon profil, puis connectez-vous à JellFly SMP en Java.</li>
-                <li>En jeu, appuyez sur <kbd>V</kbd> pour ouvrir les réglages du mod et sélectionnez votre microphone et votre sortie audio.</li>
-                <li>Utilisez la touche de discussion configurée dans les réglages (par défaut, <kbd>Verr. maj.</kbd> en mode « push-to-talk ») pour parler. Vous pouvez modifier ce raccourci dans les contrôles de Minecraft.</li>
-              </ol>
-              <p class="voice-chat-note">Si l’icône du mod indique qu’il n’est pas connecté, vérifiez que le mod correspond à votre version de Minecraft, puis reconnectez-vous au serveur.</p>
-              <a class="text-link" href="https://modrinth.com/plugin/simple-voice-chat" target="_blank" rel="noreferrer">Télécharger Simple Voice Chat Pour Modrinth<span aria-hidden="true">↗</span></a>
-              <a class="text-link" href="https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat" target="_blank" rel="noreferrer">Télécharger Simple Voice Chat Pour Curse Forge <span aria-hidden="true">↗</span></a>
-            </div>
+            <article class="join-card join-card-voice">
+              <div class="join-card-heading">
+                <span class="edition-tag">Java Edition</span>
+                <span class="edition-status">Disponible</span>
+              </div>
+              <h3 id="voice-chat-title">Rejoindre le chat vocal</h3>
+              <p>Le serveur utilise Simple Voice Chat. Installez le mod côté client pour discuter avec les joueurs à proximité.</p>
+
+              <div class="voice-download-grid">
+                <a class="voice-download" href="https://modrinth.com/plugin/simple-voice-chat" target="_blank" rel="noreferrer">
+                  <span>
+                    <span class="address-label">Plateforme</span>
+                    <strong>Modrinth</strong>
+                  </span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a class="voice-download" href="https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat" target="_blank" rel="noreferrer">
+                  <span>
+                    <span class="address-label">Plateforme</span>
+                    <strong>CurseForge</strong>
+                  </span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <div class="bedrock-guides voice-guides">
+                <section class="bedrock-guide">
+                  <h4>Installation</h4>
+                  <ol>
+                    <li>Téléchargez Simple Voice Chat pour votre version de Minecraft et votre chargeur de mods : <strong>Fabric, Forge ou NeoForge</strong>.</li>
+                    <li>Placez le fichier dans le dossier <code>mods</code>, puis lancez le bon profil Minecraft.</li>
+                    <li>Connectez-vous à JellFly SMP en Java Edition.</li>
+                  </ol>
+                </section>
+
+                <section class="bedrock-guide">
+                  <h4>Configuration</h4>
+                  <ol>
+                    <li>En jeu, appuyez sur <kbd>V</kbd> pour ouvrir les réglages du mod.</li>
+                    <li>Sélectionnez votre microphone et votre sortie audio.</li>
+                    <li>Utilisez la touche configurée pour parler (par défaut, <kbd>Verr. maj.</kbd> en mode push-to-talk).</li>
+                    <li>Pour ne plus être en push-to-talk, ouvrez les réglages du mod, choisissez <strong>Activation vocale</strong>, puis ajustez le curseur de sensibilité jusqu’à ce que votre voix soit détectée sans maintenir de touche.</li>
+                  </ol>
+                </section>
+              </div>
+
+              <p class="voice-chat-note">Si l’icône du mod indique qu’il n’est pas connecté, vérifiez que le mod correspond à votre version de Minecraft, puis reconnectez-vous au serveur. Le mod n’est pas nécessaire pour Minecraft Bedrock.</p>
+            </article>
           </section>
 
           <section class="survival-section" id="debut" data-reveal>
             <div class="section-heading">
-              <p class="home-eyebrow">Une fois en jeu</p>
-              <h2>Bien commencer sa survie</h2>
-              <p>Les premières commandes utiles pour prendre vos marques.</p>
+              <p class="home-eyebrow">Guide de démarrage</p>
+              <h2>Votre premier jour sur JellFly</h2>
+              <p>Suivez ces étapes et commandes pour prendre vos marques sur le serveur.</p>
             </div>
-            <div class="quickstart-grid">
-              <article class="quickstart-item" data-reveal style="--reveal-delay: 40ms">
+            <ol class="quickstart-grid">
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 40ms">
                 <span class="quickstart-number">01</span>
-                <code>/rtp</code>
-                <p>Téléportez-vous aléatoirement sur la carte pour commencer votre aventure.</p>
-              </article>
-              <article class="quickstart-item" data-reveal style="--reveal-delay: 100ms">
+                <code>/rules</code>
+                <p>Lisez les règles pour connaître le fonctionnement du serveur.</p>
+              </li>
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 70ms">
                 <span class="quickstart-number">02</span>
+                <code>/rtp</code>
+                <p>Partez explorer la carte et choisissez où commencer votre aventure.</p>
+              </li>
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 100ms">
+                <span class="quickstart-number">03</span>
+                <code>/sethome &lt;nom&gt;</code>
+                <p>Enregistrez un point de retour à l’endroit de votre base.</p>
+              </li>
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 130ms">
+                <span class="quickstart-number">04</span>
+                <code>/jobstats</code>
+                <p>Consultez vos métiers et découvrez comment progresser.</p>
+              </li>
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 160ms">
+                <span class="quickstart-number">05</span>
                 <code>/shop</code>
                 <p>Vendez vos surplus et accédez aux boutiques du serveur.</p>
-              </article>
-              <article class="quickstart-item" data-reveal style="--reveal-delay: 160ms">
-                <span class="quickstart-number">03</span>
-                <code>/jobstats</code>
-                <p>Consultez vos métiers et faites progresser votre personnage.</p>
-              </article>
-            </div>
+              </li>
+              <li class="quickstart-item" data-reveal style="--reveal-delay: 190ms">
+                <span class="quickstart-number">06</span>
+                <code>/spawn</code>
+                <p>Retournez au point de départ lorsque vous en avez besoin.</p>
+              </li>
+            </ol>
+            <a class="text-link first-day-link" href="wiki-commandes.html">Voir toutes les commandes du serveur <span aria-hidden="true">→</span></a>
           </section>
         </div>
 

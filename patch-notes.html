@@ -3,10 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JellFlySMP - Patch Notes</title>
+    <title>Mises à jour du serveur | JellFly SMP</title>
+    <meta name="description" content="Retrouvez les dernières mises à jour de JellFly SMP : nouveautés, corrections et évolutions du serveur Minecraft." />
+    <link rel="canonical" href="https://wiki.jellfly.win/patch-notes.html" />
+    <link rel="icon" type="image/png" href="assets/css/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JellFly SMP" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="Mises à jour du serveur | JellFly SMP" />
+    <meta property="og:description" content="Retrouvez les dernières mises à jour de JellFly SMP : nouveautés, corrections et évolutions du serveur Minecraft." />
+    <meta property="og:url" content="https://wiki.jellfly.win/patch-notes.html" />
+    <meta property="og:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mises à jour du serveur | JellFly SMP" />
+    <meta name="twitter:description" content="Retrouvez les dernières mises à jour de JellFly SMP : nouveautés, corrections et évolutions du serveur Minecraft." />
+    <meta name="twitter:image" content="https://wiki.jellfly.win/assets/og/jellfly-social.png" />
+    <meta name="twitter:image:alt" content="Logo JellFly SMP Saison 2 sur un fond vert Minecraft" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" />
     <link rel="stylesheet" href="styles.css" />
     <script src="site.js" defer></script>
-    <script src="wiki-metier.js" defer></script>
     <script src="wiki-search.js" defer></script>
   </head>
   <body class="article-page">
@@ -29,14 +49,13 @@
             <div class="nav-dropdown" id="wiki-submenu">
               <a href="wiki-metiers.html">Métiers</a>
               <a href="wiki-commandes.html">Commandes</a>
-              <a href="wiki-factions.html">Factions</a>
             </div>
           </div>
           <a href="reglement.html">Règlement</a>
           <a href="patch-notes.html">Patch Notes</a>
         </nav>
 
-        <button class="search-button" aria-label="Open search bar">
+        <button class="search-button" type="button" aria-label="Ouvrir la recherche" aria-haspopup="dialog" aria-controls="site-search-panel" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="11" cy="11" r="5.5"></circle>
             <path d="M16 16L21 21"></path>
@@ -47,39 +66,42 @@
       <main class="content-page">
         <div class="content-wrap patch-page">
           <h1>Patch Notes</h1>
-          <p class="lead">Liste de toutes les mises à jours faites sur le serveur ou le site</p>
+          <p class="lead">Liste des mises à jour du serveur et du site.</p>
 
-          <div class="patch-entry">
-            <p>-Ajout d'un chat inter discord minecraft</p>
-            <p>- Ajout des récompense lors des votes</p>
-            <p>- Ajout de la possibilité au bedrock de rejoindre</p>
-          </div>
-
-          <h3>2.0.3------2026/08/23</h3>
-          <div class="patch-entry">
-            <p>- Ajout de la possibilité d'acheter des homes via /buyhome</p>
-            <p>- Ajout d'une commande admin permettant de gérer les homes</p>
-            <p>- Correction de diverses erreurs de traductions</p>
-            <p>- Correction du bug ou il était possible de poser un bloc et le détruire en récupérant les gains</p>
-          </div>
-
-          <h3>2.0.2------2026/08/21</h3>
-          <ul>
-            <li>Correction de la possiblité d'acheter avec l'inventaire full</li>
-            <li>Correction de la duplication d'item a l'hôtel des ventes</li>
-            <li>Correction des récompenses lié aux cultures (pour les jobs)</li>
-            <li>Ajout d'un classement pour chaque métier</li>
-            <li>Ajout d'un classement global pour les métiers</li>
+          <h2>Dernières nouveautés</h2>
+          <ul class="patch-entry">
+            <li>Ajout d’un chat entre Discord et Minecraft.</li>
+            <li>Ajout de récompenses pour les votes.</li>
+            <li>Ajout de la compatibilité avec Bedrock.</li>
           </ul>
 
-          <h3>2.0.1------2026/08/18</h3>
-          <ul>
-            <li>Modification du plugin de home</li>
-            <ul>
-              <li>Ajout d'une interface de création de home</li>
-              <li>Ajout d'une confirmation de téléportation lors de bloc invalide</li>
-              <li>Modification complètes des règles</li>
-            </ul>
+          <h3>2.0.3 — 23 août 2026</h3>
+          <ul class="patch-entry">
+            <li>Ajout de l’achat de homes avec <code>/buyhome</code>.</li>
+            <li>Ajout d’une commande d’administration pour gérer les homes.</li>
+            <li>Correction de plusieurs erreurs de traduction.</li>
+            <li>Correction d’un bug qui permettait de poser puis de détruire un bloc tout en récupérant les gains.</li>
+          </ul>
+
+          <h3>2.0.2 — 21 août 2026</h3>
+          <ul class="patch-entry">
+            <li>Correction d’un problème qui permettait d’acheter avec l’inventaire plein.</li>
+            <li>Correction d’un bug de duplication d’objets à l’hôtel des ventes.</li>
+            <li>Correction des récompenses liées aux cultures pour les métiers.</li>
+            <li>Ajout d’un classement pour chaque métier.</li>
+            <li>Ajout d’un classement général des métiers.</li>
+          </ul>
+
+          <h3>2.0.1 — 18 août 2026</h3>
+          <ul class="patch-entry">
+            <li>
+              Modification du plugin de homes :
+              <ul>
+                <li>Ajout d’une interface de création de home.</li>
+                <li>Ajout d’une confirmation de téléportation si l’emplacement est invalide.</li>
+                <li>Révision complète du règlement.</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </main>

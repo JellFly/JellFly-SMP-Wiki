@@ -5,7 +5,7 @@ const jobs = {
     sections: [
       {
         title: "Niveau",
-        intro: "Pour monter en niveaux en métiers de Mineur plusieurs options s'offre à vous selon votre niveau",
+        intro: "Pour progresser dans le métier de mineur, plusieurs actions sont possibles selon votre niveau.",
         groups: [
           { title: "Niveau 1", items: "Minerai de cuivre — 5.0 XP|Minerai de cuivre (Deepslate) — 5.0 XP|Minerai de charbon — 4.0 XP|Minerai de charbon (Deepslate) — 4.0 XP|Granite — 3.0 XP|Diorite — 3.0 XP|Andésite — 3.0 XP|Tuff — 3.0 XP|Calcite — 3.0 XP|Deepslate — 1.0 XP|Pierre (STONE) — 0.5 XP" },
           { title: "Niveau 2", items: "Minerai d'or — 15.0 XP|Minerai d'or (Deepslate) — 15.0 XP|Minerai de fer — 10.0 XP|Minerai de fer (Deepslate) — 10.0 XP" },
@@ -24,7 +24,7 @@ const jobs = {
       },
       {
         title: "Argent",
-        intro: "Lorsque vous atteignez le niveau 20 vous débloquerez une nouvelle fonctionnalité qui vous permet de gagner de l'argent lorsque vous minez certains blocs",
+        intro: "À partir du niveau 20, vous pouvez gagner de l’argent en minant certains blocs.",
         groups: [
           { title: "Minerais précieux", items: "Débris antiques — $15.00|Minerai de diamant — $10.00|Minerai d'émeraude — $6.00|Minerai d'émeraude (Deepslate) — $1000.00|Minerai de lapis — $3.00|Éclat de netherite — $3.00|Minerai de redstone — $2.00" },
           { title: "Minerais communs", items: "Minerai d'or — $1.20|Minerai de fer — $1.00|Minerai de cuivre — $0.70|Minerai d'or du Nether — $0.70|Minerai de charbon — $0.50|Minerai de quartz du Nether — $0.50" },
@@ -34,12 +34,12 @@ const jobs = {
     ]
   },
   bucheron: {
-    title: "Bucheron",
+    title: "Bûcheron",
     intro: "Coupez les différents types de bois pour gagner de l'expérience et débloquer de nouvelles récompenses.",
     sections: [
       {
         title: "Niveau",
-        intro: "Pour monter en niveau plusieurs option s'offre à vous selon votre niveau",
+        intro: "Pour progresser dans ce métier, plusieurs actions sont possibles selon votre niveau.",
         groups: [
           { title: "En cassant du bois", groups: [
             { title: "Niveau 1", items: "Chêne (Log) — 11.0 XP|Bouleau (Log) — 11.0 XP|Jungle (Log) — 11.0 XP|Acacia (Log) — 11.0 XP|Chêne noir (Log) — 11.0 XP|Chêne (Wood) — 11.0 XP|Sapin (Wood) — 11.0 XP|Bouleau (Wood) — 11.0 XP|Jungle (Wood) — 11.0 XP|Acacia (Wood) — 11.0 XP" },
@@ -50,7 +50,7 @@ const jobs = {
       },
       {
         title: "Argent",
-        intro: "Lorsque vous atteignez le niveau 15 vous commencer à gagner de l'argent lorsque vous cassez certain bloc",
+        intro: "À partir du niveau 15, vous gagnez de l’argent en cassant certains blocs.",
         groups: [
           { title: "Bois standards", items: "Mangrove (Log) — $9.00|Chêne (Log) — $0.50|Sapin (Log) — $0.50|Bouleau (Log) — $0.50|Jungle (Log) — $0.50|Acacia (Log) — $0.50|Chêne noir (Log) — $0.50|Chêne pâle (Log) — $0.50|Cerisier (Log) — $0.50|Chêne (Wood) — $0.50|Sapin (Wood) — $0.50|Bouleau (Wood) — $0.50|Jungle (Wood) — $0.50|Acacia (Wood) — $0.50|Chêne noir (Wood) — $0.50|Mangrove (Wood) — $0.50|Cerisier (Wood) — $0.50|Chêne pâle (Wood) — $0.50" },
           { title: "Bois du Nether", items: "Crimson (Stem) — $0.50|Warped (Stem) — $0.50|Crimson (Hyphae) — $0.50|Warped (Hyphae) — $0.50" }
@@ -60,11 +60,11 @@ const jobs = {
   },
   fermier: {
     title: "Fermier",
-    intro: "Le métier de fermier est surment celui avec le plus grand nombre de taches. Entre récolter ses champs, apprivoiser des animaux et les reproduires il est toujours occupé.",
+    intro: "Le métier de fermier offre de nombreuses activités : récolter les champs, apprivoiser et reproduire des animaux.",
     sections: [
       {
         title: "XP",
-        intro: "Pour monter de niveau dans ce métiers plusieurs option s'offre à vous selon votre niveau:",
+        intro: "Pour progresser dans ce métier, plusieurs actions sont possibles selon votre niveau.",
         groups: [
           { title: "Récolte", groups: [
             { title: "Niveau 1", items: "Blé — 5.0 XP|Carottes — 5.0 XP" },
@@ -81,7 +81,7 @@ const jobs = {
       },
       {
         title: "Argent",
-        intro: "Lorsque vous atteignez le niveau 20 vous débloquez l'option de gagner de l'argent en effectuant certaine action",
+        intro: "À partir du niveau 20, certaines actions vous permettent de gagner de l’argent.",
         groups: [
           { title: "Récolte", items: "Pitcher (crop) — $1.00|Fleur-torche (crop) — $1.00|Betteraves — $0.30|Blé — $0.20|Carottes — $0.20|Pommes de terre — $0.20|Verrue du Nether — $0.50|Cacao — $0.50|Baies sucrées — $0.50" },
           { title: "Reproduire", items: "Lama de marchand — $2.00|Champimeuh (Mooshroom) — $1.00|Chameau — $1.00|Lama — $1.00|Cheval — $1.00|Âne — $1.00|Mule — $1.00|Chèvre — $1.00|Renifleur (Sniffer) — $0.50|Tortue — $0.50|Panda — $0.50|Renard — $0.50|Vache — $0.50|Mouton — $0.50|Cochon — $0.50|Poulet — $0.50|Lapin — $0.50|Loup — $0.50|Chat — $0.50|Ocelot — $0.50|Abeille — $0.50|Strider — $0.50" }
@@ -91,11 +91,11 @@ const jobs = {
   },
   chasseur: {
     title: "Chasseur",
-    intro: "Entre la pêche, la chasse et la cuisson",
+    intro: "Pêchez, combattez des créatures et cuisinez vos ressources pour progresser dans ce métier.",
     sections: [
       {
         title: "Niveau",
-        intro: "Plusieurs option s'offre à vous pour monter de niveau dans ce métier.",
+        intro: "Plusieurs activités vous permettent de progresser dans ce métier.",
         groups: [
           { title: "Pêche", groups: [
             { title: "Niveau 1", items: "Morue — 8.0 XP|Saumon — 8.0 XP|Poisson tropical — 8.0 XP|Poisson-globe — 8.0 XP" }
@@ -114,13 +114,13 @@ const jobs = {
             { title: "Niveau 20", items: "Warden — 1000.0 XP" }
           ] },
           { title: "Cuire", groups: [
-            { title: "Niveau 1:", items: "Bœuf — 8.0 XP|Porc — 8.0 XP|Poulet — 8.0 XP|Mouton cuits — 8.0 XP|Morue — 6.0 XP|Saumon cuits — 6.0 XP|Lapin cuit — 6.0 XP" }
+            { title: "Niveau 1", items: "Bœuf — 8.0 XP|Porc — 8.0 XP|Poulet — 8.0 XP|Mouton cuit — 8.0 XP|Morue — 6.0 XP|Saumon cuit — 6.0 XP|Lapin cuit — 6.0 XP" }
           ] }
         ]
       },
       {
         title: "Argent",
-        intro: "Lorsque vous atteignez le niveau 20 vous débloquez une fonctionnalitée qui vous donne de l'argent selon certaines actions",
+        intro: "À partir du niveau 20, certaines actions vous permettent de gagner de l’argent.",
         groups: [
           { title: "Pêche", items: "Morue — $0.30|Saumon — $0.30|Poisson tropical — $0.30|Poisson-globe — $0.30" },
           { title: "Combat", items: "Warden — $100.00|Ender Dragon — $12.00|Wither — $10.00|Evoker — $2.00|Ravager — $2.00|Piglin Brute — $2.00|Elder Guardian — $2.00|Illusioner — $2.00|Breeze — $2.00|Creaking — $2.00|Golem de fer — $0.60|Zombie — $0.50|Husk — $0.50|Squelette — $0.50|Araignée — $0.50|Creeper — $0.50|Slime — $0.50|Villageois zombifié — $0.50|Noyé — $0.50|Stray — $0.50|Araignée des cavernes — $0.50|Pillager — $0.50|Bogged — $0.50|Enderman — $0.50|Sorcière — $0.50|Phantom — $0.50|Vindicator — $0.50|Vex — $0.50|Cube de magma — $0.50|Hoglin — $0.50|Gardien — $0.50|Piglin — $0.50|Piglin zombifié — $0.50|Blaze — $0.50|Ghast — $0.50|Zoglin — $0.50|Squelette Wither — $0.50|Shulker — $0.50|Renard — $0.25|Abeille — $0.25|Chèvre — $0.25|Axolotl — $0.25|Allay — $0.25|Renifleur — $0.25|Panda — $0.25|Dauphin — $0.25|Armadillo — $0.25|Chameau — $0.25|Ours polaire — $0.25|Strider — $0.25|Silverfish — $0.30|Endermite — $0.30|Cheval — $0.15|Âne — $0.15|Mule — $0.15|Chat — $0.15|Ocelot — $0.15|Perroquet — $0.15|Tortue — $0.15|Calmar — $0.15|Calmar brillant — $0.15|Chauve-souris — $0.15|Lama — $0.15|Lama de marchand — $0.15|Loup — $0.15|Têtard — $0.15|Grenouille — $0.15|Cheval squelette — $0.15|Cheval zombie — $0.15|Villageois — $0.10|Marchand ambulant — $0.10|Golem de neige — $0.10|Vache — $0.10|Champimeuh — $0.10|Cochon — $0.10|Mouton — $0.10|Poulet — $0.10|Lapin — $0.10" },
@@ -147,7 +147,7 @@ const jobs = {
             { title: "Niveau 8", items: "Maître tortue — 15.0 XP" },
             { title: "Niveau 9", items: "Charge de vent, Tissage, Suintement, Infestation — 15.0 XP" }
           ] },
-          { title: "Enchatements", groups: [
+          { title: "Enchantements", groups: [
             { title: "Niveau 1", items: "Outils en bois — 10.0 XP|Outils en pierre — 10.0 XP|Cisailles — 10.0 XP|Armure en cuir — 10.0 XP|Livre — 8.0 XP" },
             { title: "Niveau 2", items: "Canne à pêche — 10.0 XP|Bouclier — 10.0 XP|Armure en cotte de mailles — 10.0 XP" },
             { title: "Niveau 3", items: "Outils en fer — 10.0 XP|Outils en or — 10.0 XP — $0.15|Arc, Arbalète, Trident — 10.0 XP — $0.15|Armure en fer — 10.0 XP — $0.15|Armure en or — 10.0 XP — $0.15" },
@@ -207,7 +207,20 @@ function renderGroups(parent, groups, sectionIndex, depth = 3, groupPath = []) {
 }
 
 if (content && job) {
-  document.title = `JellFlySMP - Wiki - ${job.title}`;
+  document.title = `${job.title} | Fiche métier JellFly SMP`;
+  const description = job.intro.slice(0, 157);
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    const canonicalUrl = new URL(canonical.href);
+    canonicalUrl.searchParams.set("metier", jobKey);
+    canonical.href = canonicalUrl.toString();
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonical.href);
+  }
+  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", document.title);
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", description);
   document.querySelector("#job-title").textContent = job.title;
   if (job.intro) appendText(content, "p", job.intro);
 

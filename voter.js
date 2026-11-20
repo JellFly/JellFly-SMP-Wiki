@@ -7,6 +7,7 @@ const platformList = document.querySelector("#platform-list");
 const voteTotal = document.querySelector("#vote-total");
 const leaderboardList = document.querySelector("#leaderboard-list");
 const countdownTimers = new Map();
+const automaticVerificationTimers = new Map();
 let usernameConfirmed = false;
 
 const voteSites = [
@@ -106,6 +107,7 @@ function startCountdown(site, card, nextVoteAt) {
 function makePlatformCard(site) {
   const card = document.createElement("article");
   card.className = "vote-platform-card";
+  card.dataset.siteId = site.id;
 
   const title = document.createElement("h4");
   title.textContent = site.name;
@@ -139,6 +141,8 @@ async function checkVoteStatus(site, card, button) {
 
   const status = card.querySelector(".platform-status");
   const countdown = card.querySelector(".platform-countdown");
+  clearTimeout(automaticVerificationTimers.get(site.id));
+  automaticVerificationTimers.delete(site.id);
   button.disabled = true;
   button.textContent = "Vérification…";
   status.className = "platform-status";
@@ -183,6 +187,28 @@ async function checkVoteStatus(site, card, button) {
     button.textContent = "Vérifier mon vote";
   }
 }
+
+platformList.addEventListener("click", (event) => {
+  const voteLink = event.target.closest(".vote-link");
+  if (!voteLink) return;
+
+  const card = voteLink.closest(".vote-platform-card");
+  const site = voteSites.find((candidate) => candidate.id === card?.dataset.siteId);
+  if (!card || !site) return;
+
+  clearTimeout(automaticVerificationTimers.get(site.id));
+  const usernameAtVote = getUsername();
+  const countdown = card.querySelector(".platform-countdown");
+  countdown.textContent = "Vérification automatique dans 15 secondes…";
+  automaticVerificationTimers.set(site.id, setTimeout(() => {
+    automaticVerificationTimers.delete(site.id);
+    if (!usernameConfirmed || getUsername() !== usernameAtVote) {
+      countdown.textContent = "Confirmez à nouveau votre pseudo pour vérifier le vote.";
+      return;
+    }
+    checkVoteStatus(site, card, card.querySelector("button"));
+  }, 15000));
+});
 
 function renderPlatforms() {
   platformList.replaceChildren(...voteSites.map(makePlatformCard));

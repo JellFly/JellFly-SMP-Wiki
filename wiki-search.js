@@ -1,15 +1,16 @@
-const searchButton = document.querySelector(".search-button");
+const searchTrigger = document.querySelector(".search-button");
 
-if (searchButton) {
+if (searchTrigger) {
   const searchPanel = document.createElement("section");
+  searchPanel.id = "site-search-panel";
   searchPanel.className = "wiki-search-panel";
   searchPanel.hidden = true;
   searchPanel.setAttribute("role", "dialog");
-  searchPanel.setAttribute("aria-label", "Recherche sur le site");
+  searchPanel.setAttribute("aria-labelledby", "wiki-search-title");
   searchPanel.innerHTML = `
     <div class="wiki-search-header">
-      <strong>Recherche sur tout le site</strong>
-      <button class="wiki-search-close" type="button">Fermer</button>
+      <strong id="wiki-search-title">Recherche sur tout le site</strong>
+      <button class="wiki-search-close" type="button" aria-label="Fermer la recherche">Fermer</button>
     </div>
     <label class="visually-hidden" for="wiki-search-input">Rechercher</label>
     <input class="wiki-search-input" id="wiki-search-input" type="search" placeholder="Rechercher dans toutes les pages…" autocomplete="off">
@@ -28,12 +29,16 @@ if (searchButton) {
     "patch-notes.html",
     "wiki.html",
     "wiki-metiers.html",
-    "wiki-commandes.html",
-    "wiki-factions.html"
+    "wiki-commandes.html"
   ];
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  let loadingIndex = true;
+  const fuseScriptUrl = "https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js";
+  let loadingIndex = false;
+  let indexStarted = false;
   let unavailablePages = 0;
+  let jobIndexUnavailable = false;
+  let fuzzySearch = null;
+  let fuzzySearchUnavailable = false;
 
   function normalize(value) {
     return value
@@ -50,7 +55,16 @@ if (searchButton) {
   function addEntry(title, category, text, href) {
     const cleanText = text.replace(/\s+/g, " ").trim();
     if (!cleanText || !href) return;
-    entries.push({ title: title.trim() || cleanText, category, text: cleanText, href });
+    const cleanTitle = title.trim() || cleanText;
+    entries.push({
+      title: cleanTitle,
+      category,
+      text: cleanText,
+      href,
+      searchOrder: entries.length,
+      normalizedTitle: normalize(cleanTitle),
+      normalizedContent: normalize(`${cleanTitle} ${category} ${cleanText}`)
+    });
   }
 
   function indexDocument(doc, page, shouldSetIds) {
@@ -79,7 +93,7 @@ if (searchButton) {
   function indexJobs() {
     const jobs = window.jellflyWikiJobs;
     const anchorIds = window.jellflyWikiAnchorIds;
-    if (!jobs || !anchorIds) return;
+    if (!jobs || !anchorIds) return false;
 
     function indexGroups(jobKey, job, groups, sectionIndex, groupPath = []) {
       groups.forEach((group, groupIndex) => {
@@ -99,6 +113,37 @@ if (searchButton) {
         indexGroups(jobKey, job, section.groups, sectionIndex);
       });
     });
+
+    return true;
+  }
+
+  function findFuzzyMatches(terms) {
+    if (!fuzzySearch || terms.some((term) => term.length < 2)) return [];
+
+    const resultsByTerm = terms.map((term) => fuzzySearch.search(term));
+    if (resultsByTerm.some((results) => results.length === 0)) return [];
+
+    const scoreMaps = resultsByTerm.slice(1).map((results) =>
+      new Map(results.map(({ item, score }) => [item, score]))
+    );
+    const matches = [];
+
+    resultsByTerm[0].forEach(({ item, score }) => {
+      const scores = [score];
+      for (const scoreMap of scoreMaps) {
+        const nextScore = scoreMap.get(item);
+        if (nextScore === undefined) return;
+        scores.push(nextScore);
+      }
+
+      matches.push({
+        entry: item,
+        order: item.searchOrder,
+        score: scores.reduce((total, value) => total + value, 0) / scores.length
+      });
+    });
+
+    return matches.sort((a, b) => a.score - b.score || a.order - b.order);
   }
 
   function renderResults() {
@@ -110,23 +155,29 @@ if (searchButton) {
     }
 
     const terms = query.split(/\s+/).filter(Boolean);
-    const matches = entries
-      .map((entry, order) => {
-        const title = normalize(entry.title);
-        const content = normalize(`${entry.title} ${entry.category} ${entry.text}`);
-        if (!terms.every((term) => content.includes(term))) return null;
+    const matches = [];
+    entries.forEach((entry, order) => {
+      if (!terms.every((term) => entry.normalizedContent.includes(term))) return;
 
-        const score = title === query ? 0 : title.startsWith(query) ? 1 : title.includes(query) ? 2 : 3;
-        return { ...entry, order, score };
-      })
-      .filter(Boolean)
-      .sort((a, b) => a.score - b.score || a.order - b.order)
-      .slice(0, 12);
+      const score = entry.normalizedTitle === query
+        ? 0
+        : entry.normalizedTitle.startsWith(query)
+          ? 1
+          : entry.normalizedTitle.includes(query) ? 2 : 3;
+      matches.push({ entry, order, score });
+    });
+    matches.sort((a, b) => a.score - b.score || a.order - b.order);
+    if (!matches.length) matches.push(...findFuzzyMatches(terms));
 
     if (!matches.length) {
-      showMessage(loadingIndex ? "Indexation en cours…" : "Aucun résultat trouvé.");
+      const message = loadingIndex
+        ? "Indexation en cours…"
+        : fuzzySearchUnavailable
+          ? "Aucun résultat trouvé. La recherche approximative est indisponible."
+          : "Aucun résultat trouvé.";
+      showMessage(message);
     } else {
-      matches.forEach((entry) => {
+      matches.slice(0, 12).forEach(({ entry }) => {
         const item = document.createElement("li");
         const link = document.createElement("a");
         const title = document.createElement("strong");
@@ -146,6 +197,9 @@ if (searchButton) {
     if (unavailablePages) {
       showMessage(`${unavailablePages} page(s) n’ont pas pu être indexées.`);
     }
+    if (jobIndexUnavailable) {
+      showMessage("Les fiches métiers n’ont pas pu être indexées.");
+    }
   }
 
   function showMessage(message) {
@@ -157,14 +211,103 @@ if (searchButton) {
 
   function setOpen(isOpen) {
     searchPanel.hidden = !isOpen;
+    searchTrigger.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) {
+      startIndexing();
       searchInput.focus();
       renderResults();
     }
   }
 
+  function loadJobData() {
+    if (indexJobs()) return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = new URL("wiki-metier.js", document.baseURI).href;
+      script.onload = () => {
+        if (indexJobs()) {
+          resolve();
+        } else {
+          reject(new Error("Les données des métiers sont indisponibles."));
+        }
+      };
+      script.onerror = () => reject(new Error("Impossible de charger les données des métiers."));
+      document.head.append(script);
+    });
+  }
+
+  function loadFuzzySearch() {
+    if (typeof window.Fuse === "function") return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = fuseScriptUrl;
+      const timeout = window.setTimeout(() => {
+        script.remove();
+        reject(new Error("Le chargement de Fuse.js a expiré."));
+      }, 8000);
+      script.onload = () => {
+        window.clearTimeout(timeout);
+        if (typeof window.Fuse === "function") {
+          resolve();
+        } else {
+          reject(new Error("Fuse.js n’est pas disponible après son chargement."));
+        }
+      };
+      script.onerror = () => {
+        window.clearTimeout(timeout);
+        reject(new Error("Impossible de charger Fuse.js."));
+      };
+      document.head.append(script);
+    });
+  }
+
+  function startIndexing() {
+    if (indexStarted) return;
+    indexStarted = true;
+    loadingIndex = true;
+
+    const pageRequests = sitePages
+      .filter((page) => page !== currentPage)
+      .map(async (page) => {
+        const response = await fetch(new URL(page, document.baseURI));
+        if (!response.ok) throw new Error(`Impossible de charger ${page} (${response.status}).`);
+        const html = await response.text();
+        const parsedDocument = new DOMParser().parseFromString(html, "text/html");
+        indexDocument(parsedDocument, page, false);
+      });
+
+    Promise.allSettled([loadJobData(), loadFuzzySearch(), ...pageRequests]).then(([jobResult, fuseResult, ...pageResults]) => {
+      if (jobResult.status === "rejected") {
+        jobIndexUnavailable = true;
+        console.error("Impossible d’indexer les fiches métiers :", jobResult.reason);
+      }
+      if (fuseResult.status === "fulfilled" && typeof window.Fuse === "function") {
+        fuzzySearch = new window.Fuse(entries, {
+          includeScore: true,
+          ignoreLocation: true,
+          minMatchCharLength: 2,
+          threshold: 0.35,
+          keys: [
+            { name: "normalizedTitle", weight: 0.7 },
+            { name: "normalizedContent", weight: 0.3 }
+          ]
+        });
+      } else {
+        fuzzySearchUnavailable = true;
+        const reason = fuseResult.status === "rejected"
+          ? fuseResult.reason
+          : new Error("Fuse.js n’est pas disponible.");
+        console.error("La recherche approximative est indisponible :", reason);
+      }
+      unavailablePages = pageResults.filter((result) => result.status === "rejected").length;
+      loadingIndex = false;
+      renderResults();
+    });
+  }
+
   indexDocument(document, currentPage, true);
-  indexJobs();
   if (window.location.hash) {
     requestAnimationFrame(() => {
       document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
@@ -173,10 +316,10 @@ if (searchButton) {
   }
   renderResults();
 
-  searchButton.addEventListener("click", () => setOpen(searchPanel.hidden));
+  searchTrigger.addEventListener("click", () => setOpen(searchPanel.hidden));
   closeButton.addEventListener("click", () => {
     setOpen(false);
-    searchButton.focus();
+    searchTrigger.focus();
   });
   searchInput.addEventListener("input", renderResults);
   resultsList.addEventListener("click", (event) => {
@@ -185,23 +328,8 @@ if (searchButton) {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !searchPanel.hidden) {
       setOpen(false);
-      searchButton.focus();
+      searchTrigger.focus();
     }
   });
 
-  Promise.allSettled(
-    sitePages
-      .filter((page) => page !== currentPage)
-      .map(async (page) => {
-        const response = await fetch(new URL(page, document.baseURI));
-        if (!response.ok) throw new Error(`Impossible de charger ${page} (${response.status}).`);
-        const html = await response.text();
-        const parsedDocument = new DOMParser().parseFromString(html, "text/html");
-        indexDocument(parsedDocument, page, false);
-      })
-  ).then((results) => {
-    unavailablePages = results.filter((result) => result.status === "rejected").length;
-    loadingIndex = false;
-    renderResults();
-  });
 }
