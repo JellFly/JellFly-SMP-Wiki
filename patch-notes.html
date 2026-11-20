@@ -6,7 +6,8 @@
     <title>JellFlySMP - Patch Notes</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="site.js" defer></script>
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="fcfddadb-38b9-481a-957c-81511383e478";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script src="wiki-metier.js" defer></script>
+    <script src="wiki-search.js" defer></script>
   </head>
   <body class="article-page">
     <div class="page-shell">
@@ -22,7 +23,14 @@
           <a href="voter.html">Voter pour le serveur</a>
           <div class="nav-drop">
             <a href="wiki.html">Wiki</a>
-            <span class="caret" aria-hidden="true">▾</span>
+            <button class="nav-drop-toggle" type="button" aria-label="Ouvrir les rubriques du Wiki" aria-controls="wiki-submenu" aria-expanded="false">
+              <span class="caret" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav-dropdown" id="wiki-submenu">
+              <a href="wiki-metiers.html">Métiers</a>
+              <a href="wiki-commandes.html">Commandes</a>
+              <a href="wiki-factions.html">Factions</a>
+            </div>
           </div>
           <a href="reglement.html">Règlement</a>
           <a href="patch-notes.html">Patch Notes</a>

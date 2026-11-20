@@ -23,12 +23,41 @@ if (navigation && header) {
     setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
   });
 
+  const wikiDropdowns = navigation.querySelectorAll(".nav-drop");
+  wikiDropdowns.forEach((dropdown) => {
+    const toggle = dropdown.querySelector(".nav-drop-toggle");
+    if (!toggle) return;
+
+    toggle.addEventListener("click", () => {
+      const isOpen = dropdown.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (dropdown.contains(event.target)) return;
+      dropdown.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
   navigation.addEventListener("click", (event) => {
-    if (event.target.closest("a")) setMenuOpen(false);
+    if (event.target.closest("a")) {
+      setMenuOpen(false);
+      wikiDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("is-open");
+        dropdown.querySelector(".nav-drop-toggle")?.setAttribute("aria-expanded", "false");
+      });
+    }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenuOpen(false);
+    if (event.key === "Escape") {
+      setMenuOpen(false);
+      wikiDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("is-open");
+        dropdown.querySelector(".nav-drop-toggle")?.setAttribute("aria-expanded", "false");
+      });
+    }
   });
 }
 
@@ -64,7 +93,7 @@ if (revealTargets.length && "IntersectionObserver" in window && !reduceMotion &&
   revealTargets.forEach((target) => {
     if (!target.hasAttribute("data-reveal")) {
       target.setAttribute("data-reveal", "");
-      target.style.setProperty("--reveal-delay", `${Math.min(revealIndex * 35, 210)}ms`);
+      target.style.setProperty("--reveal-delay", `${Math.min(revealIndex * 22, 132)}ms`);
       revealIndex += 1;
     }
   });
@@ -128,3 +157,27 @@ document.querySelectorAll('a[href="#rejoindre"]').forEach((link) => {
     history.pushState(null, "", "#rejoindre");
   });
 });
+
+let crispLoaded = false;
+function loadCrisp() {
+  if (crispLoaded) return;
+  crispLoaded = true;
+  document.removeEventListener("pointerdown", loadCrisp);
+  document.removeEventListener("keydown", loadCrisp);
+
+  window.$crisp = window.$crisp || [];
+  window.CRISP_WEBSITE_ID = "fcfddadb-38b9-481a-957c-81511383e478";
+
+  const script = document.createElement("script");
+  script.src = "https://client.crisp.chat/l.js";
+  script.async = true;
+  document.head.append(script);
+}
+
+document.addEventListener("pointerdown", loadCrisp, { once: true });
+document.addEventListener("keydown", loadCrisp, { once: true });
+if ("requestIdleCallback" in window) {
+  window.requestIdleCallback(loadCrisp, { timeout: 2500 });
+} else {
+  window.setTimeout(loadCrisp, 1200);
+}

@@ -172,6 +172,11 @@ const content = document.querySelector("#job-content");
 const jobKey = new URLSearchParams(window.location.search).get("metier");
 const job = jobs[jobKey];
 window.jellflyWikiJobs = jobs;
+window.jellflyWikiAnchorIds = {
+  section: (key, sectionIndex) => `job-${key}-section-${sectionIndex}`,
+  group: (key, sectionIndex, groupPath) => `job-${key}-group-${sectionIndex}-${groupPath.join("-")}`,
+  item: (key, sectionIndex, groupPath, itemIndex) => `job-${key}-item-${sectionIndex}-${groupPath.join("-")}-${itemIndex}`
+};
 
 function appendText(parent, tag, text) {
   const element = document.createElement(tag);
@@ -179,17 +184,26 @@ function appendText(parent, tag, text) {
   parent.append(element);
 }
 
-function renderGroups(parent, groups, depth = 3) {
-  for (const group of groups) {
-    appendText(parent, depth > 3 ? "h4" : "h3", group.title);
+function renderGroups(parent, groups, sectionIndex, depth = 3, groupPath = []) {
+  groups.forEach((group, groupIndex) => {
+    const currentPath = [...groupPath, groupIndex];
+    const heading = document.createElement(depth > 3 ? "h4" : "h3");
+    heading.id = window.jellflyWikiAnchorIds.group(jobKey, sectionIndex, currentPath);
+    heading.textContent = group.title;
+    parent.append(heading);
     if (group.items) {
       const list = document.createElement("ul");
       list.className = "simple-list";
-      for (const item of group.items.split("|")) appendText(list, "li", item);
+      group.items.split("|").forEach((item, itemIndex) => {
+        const listItem = document.createElement("li");
+        listItem.id = window.jellflyWikiAnchorIds.item(jobKey, sectionIndex, currentPath, itemIndex);
+        listItem.textContent = item;
+        list.append(listItem);
+      });
       parent.append(list);
     }
-    if (group.groups) renderGroups(parent, group.groups, depth + 1);
-  }
+    if (group.groups) renderGroups(parent, group.groups, sectionIndex, depth + 1, currentPath);
+  });
 }
 
 if (content && job) {
@@ -197,10 +211,20 @@ if (content && job) {
   document.querySelector("#job-title").textContent = job.title;
   if (job.intro) appendText(content, "p", job.intro);
 
-  for (const section of job.sections) {
-    appendText(content, "h2", section.title);
+  job.sections.forEach((section, sectionIndex) => {
+    const heading = document.createElement("h2");
+    heading.id = window.jellflyWikiAnchorIds.section(jobKey, sectionIndex);
+    heading.textContent = section.title;
+    content.append(heading);
     if (section.intro) appendText(content, "p", section.intro);
-    renderGroups(content, section.groups);
+    renderGroups(content, section.groups, sectionIndex);
+  });
+
+  if (window.location.hash) {
+    requestAnimationFrame(() => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      target?.scrollIntoView({ block: "start" });
+    });
   }
 } else if (content) {
   document.querySelector("#job-title").textContent = "Métier introuvable";

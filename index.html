@@ -6,7 +6,8 @@
     <title>JellFly SMP</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="site.js" defer></script>
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="fcfddadb-38b9-481a-957c-81511383e478";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script src="wiki-metier.js" defer></script>
+    <script src="wiki-search.js" defer></script>
   </head>
   <body class="home-site">
     <div class="page-shell">
@@ -22,7 +23,14 @@
           <a href="voter.html">Voter pour le serveur</a>
           <div class="nav-drop">
             <a href="wiki.html">Wiki</a>
-            <span class="caret" aria-hidden="true">▾</span>
+            <button class="nav-drop-toggle" type="button" aria-label="Ouvrir les rubriques du Wiki" aria-controls="wiki-submenu" aria-expanded="false">
+              <span class="caret" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav-dropdown" id="wiki-submenu">
+              <a href="wiki-metiers.html">Métiers</a>
+              <a href="wiki-commandes.html">Commandes</a>
+              <a href="wiki-factions.html">Factions</a>
+            </div>
           </div>
           <a href="reglement.html">Règlement</a>
           <a href="patch-notes.html">Patch Notes</a>
@@ -71,11 +79,13 @@
               <ol class="join-steps">
                 <li>Lancez Minecraft et ouvrez le menu Multijoueur.</li>
                 <li>Ajoutez un serveur avec le nom « JellFly SMP » et l’adresse indiquée ci-dessus.</li>
-                <li>
-                  <span>Lors de votre première connexion, enregistrez un mot de passe de 6 chiffres avec cette commande :</span>
-                  <code class="register-command">/register {mot de passe} {mot de passe}</code>
-                </li>
+                <li>Lors de votre première connexion, enregistrez un mot de passe de 5 chiffres minimum lors de l'apparition du formulaire de connexion.</li>
                 <li>Retenez ce mot de passe : il vous sera demandé lors de vos prochaines connexions.</li>
+                <li>
+                  <span>Si vous possédez un compte Premium (Vous avez achetez Minecraft), utilisez la commande:</span>
+                  <code class="register-command">/premium</code>
+                </li>
+                <li>Vous n'aurez ensuite qu'à vous reconnecter avec votre code, vous pourez ensuite jouer sans vous connecter à chaque fois.</li>
               </ol>
             </article>
 
@@ -152,6 +162,25 @@
               <a class="text-link" href="https://discord.gg/PV7KxdRzTr" target="_blank" rel="noreferrer">Besoin d’aide ? Rejoindre le Discord <span aria-hidden="true">↗</span></a>
             </article>
           </div>
+
+          <section class="voice-chat-section" id="voice-chat" data-reveal aria-labelledby="voice-chat-title">
+            <div class="section-heading">
+              <p class="home-eyebrow">Jouez aussi à la voix</p>
+              <h2 id="voice-chat-title">Rejoindre le chat vocal</h2>
+              <p>Le serveur utilise le mod Simple Voice Chat. Le chat vocal est disponible sur Minecraft Java avec le mod installé côté client.</p>
+            </div>
+            <div class="voice-chat-card">
+              <ol class="join-steps">
+                <li>Installez Simple Voice Chat pour votre version de Minecraft et votre chargeur de mods (Fabric, Forge ou NeoForge, selon votre installation). Le serveur ne vous demande pas d’installer le mod pour Bedrock.</li>
+                <li>Lancez le jeu avec le bon profil, puis connectez-vous à JellFly SMP en Java.</li>
+                <li>En jeu, appuyez sur <kbd>V</kbd> pour ouvrir les réglages du mod et sélectionnez votre microphone et votre sortie audio.</li>
+                <li>Utilisez la touche de discussion configurée dans les réglages (par défaut, <kbd>Verr. maj.</kbd> en mode « push-to-talk ») pour parler. Vous pouvez modifier ce raccourci dans les contrôles de Minecraft.</li>
+              </ol>
+              <p class="voice-chat-note">Si l’icône du mod indique qu’il n’est pas connecté, vérifiez que le mod correspond à votre version de Minecraft, puis reconnectez-vous au serveur.</p>
+              <a class="text-link" href="https://modrinth.com/plugin/simple-voice-chat" target="_blank" rel="noreferrer">Télécharger Simple Voice Chat Pour Modrinth<span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat" target="_blank" rel="noreferrer">Télécharger Simple Voice Chat Pour Curse Forge <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
 
           <section class="survival-section" id="debut" data-reveal>
             <div class="section-heading">
